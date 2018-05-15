@@ -120,18 +120,23 @@ export default function () {
     color.r = c[0].replace('rgb(', '').replace('rgba(', '').replace(' ', '')
     color.g = c[1].replace(' ', '')
     color.b = c[2].replace(')', '').replace(' ', '')
-    let animation = new Pixelated(ctx, pixelSize, color, waveThickness)
+    el.pixelated = new Pixelated(ctx, pixelSize, color, waveThickness)
     el.addEventListener('click', function (e) {
       let rect = canvas.getBoundingClientRect()
       let pos = {
         x: e.clientX - rect.left, 
         y: e.clientY - rect.top
       }
-      animation.spread(pos, 1000)
+      el.pixelated.spread(pos, 1000)
     })
-    animation.spread({
-      x: canvas.width / 2,
-      y: canvas.height / 2
-    }, 40)
   });
+}
+
+export function spread () {
+  document.querySelectorAll('.pixelated').forEach(function (el) {
+    el.pixelated.spread({
+      x: el.pixelated.ctx.canvas.width / 2,
+      y: el.pixelated.ctx.canvas.height / 2
+    }, 40)
+  })
 }
