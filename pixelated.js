@@ -102,22 +102,26 @@ export class Pixelated {
 }
 
 export default function () {
-  let sheet = window.document.styleSheets[0]
-  sheet.insertRule(`.pixelated {
+  var css = document.createElement('style')
+  css.type = 'text/css'
+  css.innerHTML = `
+  .pixelated {
     overflow: hidden;
     box-sizing: border-box;
     position: relative;
-  }`, sheet.cssRules.length)
-  sheet.insertRule(`.pixelated span {
+  }
+  .pixelated span {
     position: relative;
     z-index: 1;
-  }`, sheet.cssRules.length)
-  sheet.insertRule(`.pixelated canvas {
+  }
+  .pixelated canvas {
     position: absolute;
     top: 0;
     left: 0;
     z-index: 0;
-  }`, sheet.cssRules.length)
+  }`
+  document.body.appendChild(css);
+
   document.querySelectorAll('.pixelated').forEach(function (el) {
     let size = el.getBoundingClientRect()
     let canvas = document.createElement('canvas')
