@@ -1,4 +1,4 @@
-export class Pixelated{
+export class Pixelated {
   constructor (ctx, size, color, thickness) {
     this.ctx = ctx
     this.thickness = thickness

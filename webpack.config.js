@@ -4,6 +4,8 @@ module.exports = {
   entry: './pixelated.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
+    library: 'pixelated',
+    libraryTarget: 'assign',
     filename: 'pixelated.min.js'
   },
   module: {
